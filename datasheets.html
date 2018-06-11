@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Elmec</title>
+      
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+       th {
+        background-color:#edeff2;
+        }
+        th.display {
+            width:150px;
+        }
+    </style>
+</head>
+<body>
+  
+    <!-- container -->
+    <div class="container" id="app">
+        <div class="page-header">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Datasheets</li>
+                </ol>
+            </nav>
+        </div>
+      
+    <!-- html form to create product will be here -->
+        <div class="row">
+            <div class="col-lg-6">  
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Customers</label>
+                        <input  class="form-control" id="exampleInputEmail1" v-model="search">
+                        <br>
+                        <select class="form-control" size="7" v-model="customer_id" v-on:click="search_serial_number">
+                            <option selected disabled>Select one.</option>
+                            <option v-for="customer in filteredItems" v-bind:value="customer.id"> 
+                                {{customer.customer_name}}
+                            </option>
+                        </select>
+                </div> 
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Application List (<span class="badge">{{records_count}}</span>)</label>
+                    <select class="form-control" size="5" v-model="selected" v-on:click="display_parts"> 
+                        <option v-for="(list, index) in datasheets" v-bind:value="index" >
+                            {{list.engine_make}} :{{list.engine_model}} : {{list.engine_serial_number}} : {{list.project_name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <table class="table table-bordered table-condensed">
+                    <caption>Engine spare parts</caption>
+                    <tr>
+                        <th>{{gridColumns.id}}</th>
+                        <th>{{gridColumns.project_name}}</th>
+                        <th>{{gridColumns.application}}</th>
+                        <th>{{gridColumns.application_model}}</th>
+                    </tr>
+                    <tr>
+                        <td>{{temp_data.id}}</td><td>{{temp_data.project_name}}</td>
+                        <td>{{temp_data.application}}</td><td>{{temp_data.application_model}}</td>
+                    </tr>
+                </table>
+                <table class="table table-bordered table-condensed">
+                    <tr>
+                        <th>{{gridColumns.engine_model}}</th>
+                    </tr>
+                    <tr>
+                        <td>{{temp_data.engine_model}}  ESN: {{temp_data.engine_serial_number}}</td>        
+                    </tr>
+                </table>
+                <table class="table table-bordered table-condensed">
+                    <tr>
+                        <th class="display">{{gridColumns.air_filter}}</th><td>{{temp_data.air_filter}}</td>
+                    </tr>    
+                    <tr>
+                        <th class="display">{{gridColumns.oil_filter}}</th><td>{{temp_data.oil_filter}}</td>
+                    </tr>   
+                    <tr>
+                        <th class="display">{{gridColumns.oil_filter_bypass}}</th><td>{{temp_data.oil_filter_bypass}}</td>
+                    </tr>
+                    <tr>
+                        <th class="display">{{gridColumns.fuel_filter_primary}}</th><td>{{temp_data.fuel_filter_primary}}</td>
+                    </tr>
+                    <tr>
+                        <th class="display">{{gridColumns.fuel_filter_secondary}}</th><td>{{temp_data.fuel_filter_secondary}}</td>
+                    </tr>
+                    <tr>
+                        <th class="display">{{gridColumns.coolant_filter}}</th><td>{{temp_data.coolant_filter}}</td>
+                    </tr>          
+                </table>      
+            </div>
+        </div>
+       
+        <br/>
+        
+    </div> <!-- end .container -->
+      
+    <!-- grid template -->
+   
+
+ 
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   
+<!-- Latest compiled and minified Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="node_modules/vue/dist/vue.min.js"></script>
+<script src="node_modules/axios/dist/axios.min.js"></script>
+<script src="js/main.js"></script>
+  
+</body>
+</html>

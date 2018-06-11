@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Elmec Marketing</title>
+            
+            <!-- Bootstrap -->
+            <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+            
+            <body>
+               <div id="app" class="container">
+                    <div class="page-header">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <address>
+                                        <strong>Elmec Marketing Co,.Ltd.</strong><br>
+                                        257/3-4 Pattanakarn rd., Suanluang, Suanluang<br>
+                                        Bangkok, Thailand 10250<br>
+                                        <abbr title="Phone">P:</abbr>(+662)3192679
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                        <ol class="breadcrumb">
+                                <li><a href="index.php">Home</a></li>
+                                <li>Clarke Filters</li>
+                            </ol>
+                            <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="input-group">
+                                            <input type="text" v-model="clarke_model" class="form-control" placeholder="">
+                                                <span class="input-group-btn">
+                                                <button class="btn btn-defualt" v-on:click="search_filter" id="search" type="button">Search</button>
+                                                </span>
+                                                </div>                  
+                                    </div> <!-- end of col-lg-4 -->
+                                </div> <!-- end of row class -->
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class='table table-bordered table-hover table-condensed' >
+                                            <tr>
+                                                <th rowspan='2'>Model (<span class="badge">{{count}}</span>)</th><th class='text-center' rowspan='2'>Air Filter</th>
+                                                <th class='text-center' rowspan='2'>Oil Filter</th><th class='text-center' colspan='2'>Fuel Filter</th>
+                                                <th class='text-center'>Oil</th><th class='text-center'>Coolant</th>
+                                            </tr>
+                                            <tr>
+                                                <th class='text-center'>Primary</th><th class='text-center'>Seconday</th>
+                                                <th class='text-center'>Capacity (L)</th><th class='text-center'> Capacity (L)</th>
+                                            </tr>
+                                            <tr v-for="(item, index) in filters">
+                                               <td>{{index+1}} . {{item.clarke_model}}</td>
+                                               <td>{{item.air_filter}}</td>
+                                               <td>{{item.oil_filter}}</td>
+                                               <td>{{item.fuel_filter_primary}}</td>
+                                               <td>{{item.fuel_filter_secondaryl}}</td>
+                                               <td>{{item.oil_capacity}}</td>
+                                               <td>{{item.coolant_capacity}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+               </div>
+
+
+                <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+                <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+            
+                <!-- Latest compiled and minified Bootstrap JavaScript -->
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                <script src="node_modules/vue/dist/vue.min.js"></script>
+                <script src="node_modules/axios/dist/axios.min.js"></script>
+                <script src="clarke_filter.js"></script>
+            </body>
+        </head>
+    </html>
